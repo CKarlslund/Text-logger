@@ -27,24 +27,24 @@ namespace Logger
         /// <returns></returns>
         public LogData ReadLines(int offset)
         {
-            List<string> lines = new List<string>();
-            int offsetToReturn = 0;
+            var lines = new List<string>();
+            var offsetToReturn = 0;
 
             if (File.Exists(_filePath))
             {
                 var startPosition = FindLineNumber(_rowsToRead, offset);
 
-                using (var fs = File.OpenRead(_filePath))
+                using (var fileStream = File.OpenRead(_filePath))
                 {
-                    offsetToReturn = (int)fs.Seek(0, SeekOrigin.End);
+                    offsetToReturn = (int)fileStream.Seek(0, SeekOrigin.End);
 
-                    fs.Seek(startPosition, SeekOrigin.Begin);
+                    fileStream.Seek(startPosition, SeekOrigin.Begin);
 
-                    using (var sr = new StreamReader(fs, Encoding.UTF8))
+                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                     {
                         string line;
 
-                        while ((line = sr.ReadLine()) != null)
+                        while ((line = streamReader.ReadLine()) != null)
                         {
                             lines.Add(line);
                         }
@@ -62,61 +62,56 @@ namespace Logger
         {
             int linePosition;
 
-            using (var fs = File.OpenRead(_filePath))
+            using (var fileStream = File.OpenRead(_filePath))
             {
-                var fileEnd = (int)fs.Seek(0, SeekOrigin.End);
+                var fileEnd = (int)fileStream.Seek(0, SeekOrigin.End);
                 linePosition = fileEnd;
 
-                int linesGoneThrough = 0;
+                var linesGoneThrough = 0;
 
                 while (linesGoneThrough < line && linePosition > offset)
                 {
-                    var lineOffset = FindBeginningOfLine(linePosition, fs);
+                    var lineOffset = FindBeginningOfLine(linePosition, fileStream);
 
                     linePosition = lineOffset;
 
                     linesGoneThrough++;
                 }
             }
-
             return linePosition;
         }
 
-        private int FindBeginningOfLine(int startPosition, FileStream fs)
+        private static int FindBeginningOfLine(int startPosition, FileStream fileStream)
         {
-            bool isAtNewLine = false;
+            var isAtNewLine = false;
             var newPosition = startPosition;
 
             while (!isAtNewLine)
             {
                 if (newPosition >= 0)
                 {
-                    fs.Seek(newPosition, SeekOrigin.Begin);
+                    fileStream.Seek(newPosition, SeekOrigin.Begin);
 
-                    using (var sr = new StreamReader(fs, Encoding.UTF8, false, 512, true))
+                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, false, 512, true))
                     {
+                        var character = "";
 
-                        string character = "";
+                        fileStream.Seek(newPosition, SeekOrigin.Begin);
 
-                        fs.Seek(newPosition, SeekOrigin.Begin);
-
-                        character = ((char)sr.Peek()).ToString();
+                        character = ((char)streamReader.Peek()).ToString();
 
                         if (character == "\n")
                         {
                             isAtNewLine = true;
                         }
                     }
-
                     newPosition--;
                 }
                 else
                 {
                     break;
                 }
-
             }
-
             return newPosition;
         }
     }
