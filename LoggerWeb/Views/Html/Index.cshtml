@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>HEJSAN</h1>
+
+<div id="dataDiv">
+</div>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script>
+    var uri = '/api/log/read?offset=';
+    var dataDiv = $('#datadiv');
+    var offset = 0;
+
+    window.setInterval(loadData, 1000);
+
+    function loadData() {
+        $.ajax({
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            type: 'GET',
+            url: uri+offset,
+            success: function (result) {
+                offset = result.Offset;
+                printData(result);
+            },
+            error: function (response) {
+                //alert("Error: " + response);
+            }
+        });
+    }
+
+    function printData(result) {       
+        var element = document.getElementById('dataDiv');
+
+        for (var i = 0; i < result.Rows.length; i++) {
+            if (result.Rows[i] !== '') {
+                element.innerHTML += "<br/>" + result.Rows[i];
+            }
+                
+ 
+        }    
+    }
+</script>

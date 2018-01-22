@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerWeb", "LoggerWeb\LoggerWeb.csproj", "{87D4A8ED-13A2-45A7-8206-2F74BAA59714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{43375E7A-F7B0-44D1-B717-DE4CF3FAE341}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csproj", "{19B2F9CF-12B7-4F10-AF0F-111048DAFE5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87D4A8ED-13A2-45A7-8206-2F74BAA59714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D4A8ED-13A2-45A7-8206-2F74BAA59714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D4A8ED-13A2-45A7-8206-2F74BAA59714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D4A8ED-13A2-45A7-8206-2F74BAA59714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43375E7A-F7B0-44D1-B717-DE4CF3FAE341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43375E7A-F7B0-44D1-B717-DE4CF3FAE341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43375E7A-F7B0-44D1-B717-DE4CF3FAE341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43375E7A-F7B0-44D1-B717-DE4CF3FAE341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B2F9CF-12B7-4F10-AF0F-111048DAFE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B2F9CF-12B7-4F10-AF0F-111048DAFE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B2F9CF-12B7-4F10-AF0F-111048DAFE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B2F9CF-12B7-4F10-AF0F-111048DAFE5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2E03B0A-917F-4330-88B4-C5CCAA5B7BD2}
+	EndGlobalSection
+EndGlobal
